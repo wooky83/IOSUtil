@@ -31,6 +31,32 @@ extension UIColor {
         return UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
     
+    var hexStr: String {
+        get {
+            var r:CGFloat = 0
+            var g:CGFloat = 0
+            var b:CGFloat = 0
+            var a:CGFloat = 0
+            
+            getRed(&r, green: &g, blue: &b, alpha: &a)
+            
+            let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+            return String(format: "#%06x", rgb)
+        }
+    }
+    
+    func hexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        return String(format: "#%06x", rgb)
+    }
+    
     // colorNames : http://www.w3schools.com/colors/colors_names.asp 참조
     public class func color(colorName: String) -> UIColor {
         

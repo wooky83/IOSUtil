@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C5A069A221FC40C00EA64FF /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A0699221FC40C00EA64FF /* StringEx.swift */; };
+		3C8BE647222E166900140794 /* AttributedStringFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8BE646222E166900140794 /* AttributedStringFactory.swift */; };
 		3C8D2C7F221FA0D900FE89FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D2C7E221FA0D900FE89FC /* AppDelegate.swift */; };
 		3C8D2C81221FA0D900FE89FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D2C80221FA0D900FE89FC /* ViewController.swift */; };
 		3C8D2C84221FA0D900FE89FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C8D2C82221FA0D900FE89FC /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		3C5A0699221FC40C00EA64FF /* StringEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
+		3C8BE646222E166900140794 /* AttributedStringFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringFactory.swift; sourceTree = "<group>"; };
 		3C8D2C7B221FA0D900FE89FC /* iOSUtil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSUtil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C8D2C7E221FA0D900FE89FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C8D2C80221FA0D900FE89FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		3C8D2CAC221FA0F000FE89FC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				3C8BE646222E166900140794 /* AttributedStringFactory.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */,
+				3C8BE647222E166900140794 /* AttributedStringFactory.swift in Sources */,
 				3C8D2C81221FA0D900FE89FC /* ViewController.swift in Sources */,
 				3C5A069A221FC40C00EA64FF /* StringEx.swift in Sources */,
 				3C8F676F2227AB5A00A711AC /* NSObject+SW.m in Sources */,
