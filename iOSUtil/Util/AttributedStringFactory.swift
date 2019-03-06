@@ -16,6 +16,7 @@ fileprivate enum CSAttributeType {
     case italic
     case regular
     case underLine
+    case bgColor(color: String)
     
     func valueOf(_ index: Int) -> Any? {
         switch self {
@@ -65,11 +66,12 @@ class AttributedStringFactory: NSObject {
     private var htmlString: String
     private let fontSize: CGFloat
     private var attributes: [CSAttributeType] = []
-    private let attributedString: NSMutableAttributedString = NSMutableAttributedString()
+    private let attributedString = NSMutableAttributedString()
     private var completion: (_ string : NSMutableAttributedString) -> ()
     
     fileprivate lazy var parser: XMLParser = {
         let parser = XMLParser(data: self.htmlString.data(using: .utf8)!)
+        
         parser.delegate = self
         
         return parser
@@ -90,22 +92,11 @@ class AttributedStringFactory: NSObject {
     }
     
     class func create(_ html: String, fontFamily: String? = nil, fontSize: CGFloat, fontColor: String? = nil, completion: @escaping (_ string: NSMutableAttributedString) -> ()) {
-        let family: String
-        if let fontFamily = fontFamily {
-            family = " face=\"\(fontFamily)\""
-        } else {
-            family = ""
-        }
+        let family = fontFamily.map {" face=\"\($0)\""} ?? ""
+        let color = fontColor.map {" color=\"\($0)\""} ?? ""
+        let size = " size=\"\(Int(fontSize))\""
         
-        let color: String
-        if let fontColor = fontColor {
-            color = " color=\"\(fontColor)\""
-        } else {
-            color = ""
-        }
-        
-        //let html = "<font face=\"Apple SD gothic neo\" color=\"\(fontColor)\"><span style= \"font-size:\(Int(fontSize))\">\(html)</span></font>"
-        let html = "<font\(family)\(color)><span style= \"font-size:\(Int(fontSize))\">\(html)</span></font>"
+        let html = "<font\(family)\(color)\(size)>\(html)</font>"
         let _ = AttributedStringFactory(html: html, fontSize: fontSize, completion: completion)
     }
     
@@ -173,6 +164,19 @@ class AttributedStringFactory: NSObject {
             return font
         }
     }
+    
+    private func cgFlotFromString(str: String?) -> CGFloat? {
+        guard let sizeString = str else {return nil}
+        let sizeStringTrim = sizeString.lowercased()
+            .trimmingCharacters(in: CharacterSet.decimalDigits.inverted)
+            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        if let number = NumberFormatter().number(from: sizeStringTrim)?.doubleValue {
+            return CGFloat(number)
+        } else {
+            return nil
+        }
+    }
 }
 
 extension AttributedStringFactory: XMLParserDelegate {
@@ -196,33 +200,23 @@ extension AttributedStringFactory: XMLParserDelegate {
         case "SPAN":
             guard let styleString = attributeDict["style"] else { break }
             
-            var attrs = [String: String]()
+            var attrs: [String: String] = [:]
             
             for attr in styleString.components(separatedBy: ";") {
                 let key = attr.components(separatedBy: ":")[0]
                 let value = attr.components(separatedBy: ":")[1]
-                attrs[key] = value
+                attrs[key.trimmingCharacters(in: .whitespaces)] = value.trimmingCharacters(in: .whitespaces)
             }
-            
-            guard var sizeString = attrs["font-size"] else { break }
-            
-            sizeString = sizeString.lowercased()
-                .trimmingCharacters(in: CharacterSet.decimalDigits.inverted)
-                .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            
-            if let number = NumberFormatter().number(from: sizeString)?.doubleValue {
-                let size = CGFloat(number)
+            if let size = cgFlotFromString(str: attrs["font-size"]) {
                 self.attributes.append(.font(face: nil, size: size, color: nil))
             }
             
-        case "FONT":
-            //새로운 color font가 attributes에 apend 될때 apend 이후 과정에서 last font에 size가 없을으면 default size가 세팅되는 현상이 있어 apend 시에 last font의 size를 세팅해준다.
-            if let colorAttr = attributeDict["color"], let lastFont = self.lastFont(), let lastFontSize = lastFont.valueOf(1) as? CGFloat {
-                self.attributes.append(.font(face: attributeDict["face"], size: lastFontSize, color: colorAttr))
-            } else {
-                self.attributes.append(.font(face: attributeDict["face"], size: nil, color: attributeDict["color"]))
+            if let bgColor = attrs["background-color"] {
+                self.attributes.append(.bgColor(color: bgColor))
             }
             
+        case "FONT":
+            self.attributes.append(.font(face: attributeDict["face"], size: cgFlotFromString(str: attributeDict["size"]), color: attributeDict["color"]))
         case "CENTER":
             self.attributes.append(.alignment(.center))
             
@@ -241,7 +235,7 @@ extension AttributedStringFactory: XMLParserDelegate {
     }
     
     public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        var attribute : CSAttributeType
+        var attribute: CSAttributeType
         
         switch elementName.uppercased() {
         case "BR":
@@ -286,6 +280,7 @@ extension AttributedStringFactory: XMLParserDelegate {
         let attributedString = NSMutableAttributedString(string: string)
         
         for attribute in self.attributes {
+            print(attribute)
             switch attribute {
             case .alignment(let alignment) :
                 guard let alignment = alignment else { break }
@@ -308,7 +303,7 @@ extension AttributedStringFactory: XMLParserDelegate {
                 }
                 
                 if (face != nil || size != nil) {
-                    attributedString.addAttribute(NSAttributedString.Key.font,
+                    attributedString.addAttribute(.font,
                                                   value: self.font(lastFont?.valueOf(0) as? String, type: .regular, size: lastFont?.valueOf(1) as? CGFloat),
                                                   range: NSMakeRange(0, attributedString.length))
                 }
@@ -316,40 +311,45 @@ extension AttributedStringFactory: XMLParserDelegate {
                 guard let colorString = colorString else { break }
                 
                 // "color=#FFFFFF" 형식 인지 "color=Red" 형식인지 체크
-                var color: UIColor
+                let color: UIColor
                 
                 if colorString.hasPrefix("#") {
                     color = UIColor.color(hexString: colorString)
-                }
-                else {
+                } else {
                     color = UIColor.color(colorName: colorString)
                 }
                 
-                attributedString.addAttribute(NSAttributedString.Key.foregroundColor,
+                attributedString.addAttribute(.foregroundColor,
                                               value: color,
                                               range: NSMakeRange(0, attributedString.length))
                 
             case .bold :
                 let lastFont = self.lastFont()
-                attributedString.addAttribute(NSAttributedString.Key.font,
+                attributedString.addAttribute(.font,
                                               value: self.font(lastFont?.valueOf(0) as? String, type: .bold, size: lastFont?.valueOf(1) as? CGFloat),
                                               range: NSMakeRange(0, attributedString.length))
                 
             case .italic :
                 let lastFont = self.lastFont()
-                attributedString.addAttribute(NSAttributedString.Key.font,
+                attributedString.addAttribute(.font,
                                               value: self.font(lastFont?.valueOf(0) as? String, type: .italic, size: lastFont?.valueOf(1) as? CGFloat),
                                               range: NSMakeRange(0, attributedString.length))
                 
             case .underLine :
-                attributedString.addAttribute(NSAttributedString.Key.underlineStyle,
+                attributedString.addAttribute(.underlineStyle,
                                               value: NSUnderlineStyle.single.rawValue,
+                                              range: NSMakeRange(0, attributedString.length))
+                
+            case .bgColor(let color):
+                attributedString.addAttribute(.backgroundColor,
+                                              value: UIColor.color(colorName: color),
                                               range: NSMakeRange(0, attributedString.length))
                 
             default:
                 break
             }
         }
+        print("attributedString : \(attributedString)")
         self.attributedString.append(attributedString)
     }
     
