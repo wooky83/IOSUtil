@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+//아주 많이 느릴때가 있음...
+//https://stackoverflow.com/questions/31852655/very-slow-html-rendering-in-nsattributedstring
+//http://www.robpeck.com/2015/04/nshtmltextdocumenttype-is-slow/#.XIDdcVMzZTY
 extension String {
     func attributedStringFromHtml(familyName: String = "Apple SD Gothic Neo", fontColor: String = "#ffffff", fontSize: CGFloat) -> NSAttributedString {
         let html = "<font face=\"\(familyName)\" color=\"\(fontColor)\"><span style= \"font-size:\(Int(fontSize))\">\(self)</span></font>"
