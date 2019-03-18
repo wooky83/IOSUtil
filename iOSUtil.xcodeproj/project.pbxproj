@@ -18,6 +18,7 @@
 		3C8D2C9F221FA0DB00FE89FC /* iOSUtilUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D2C9E221FA0DB00FE89FC /* iOSUtilUITests.swift */; };
 		3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F676A2227AABD00A711AC /* UIColorEx.swift */; };
 		3C8F676F2227AB5A00A711AC /* NSObject+SW.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F676E2227AB5A00A711AC /* NSObject+SW.m */; };
+		3CE97330223F836800660199 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE9732F223F836800660199 /* UIViewEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		3C8F676C2227AB5900A711AC /* iOSUtil-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSUtil-Bridging-Header.h"; sourceTree = "<group>"; };
 		3C8F676D2227AB5A00A711AC /* NSObject+SW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SW.h"; sourceTree = "<group>"; };
 		3C8F676E2227AB5A00A711AC /* NSObject+SW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SW.m"; sourceTree = "<group>"; };
+		3CE9732F223F836800660199 /* UIViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				3C5A0699221FC40C00EA64FF /* StringEx.swift */,
 				3C8F676A2227AABD00A711AC /* UIColorEx.swift */,
 				3C8F676C2227AB5900A711AC /* iOSUtil-Bridging-Header.h */,
+				3CE9732F223F836800660199 /* UIViewEx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */,
 				3C8BE647222E166900140794 /* AttributedStringFactory.swift in Sources */,
 				3C8D2C81221FA0D900FE89FC /* ViewController.swift in Sources */,
+				3CE97330223F836800660199 /* UIViewEx.swift in Sources */,
 				3C5A069A221FC40C00EA64FF /* StringEx.swift in Sources */,
 				3C8F676F2227AB5A00A711AC /* NSObject+SW.m in Sources */,
 				3C8D2C7F221FA0D900FE89FC /* AppDelegate.swift in Sources */,

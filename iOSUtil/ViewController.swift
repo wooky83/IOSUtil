@@ -22,6 +22,22 @@ class ViewController: UIViewController {
         <span style="background-color:blue; font-size:20">abcdefghikl</span>
         """, size: 50, alignment: .left)
 
+        let button = UIButton.init(frame: CGRect(x: 30, y: 100, width: 100, height: 100))
+        button.backgroundColor = .black
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle("11P", for: .normal)
+        button.addTarget(self, action: #selector(btnClicked(_:)), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+    }
+    
+    @objc func btnClicked(_ sender: UIButton) {
+        UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseIn, animations: {
+            sender.backgroundColor = .green
+        }, completion: nil)
+//        UIView.transition(with: sender, duration: 1.5, options: .transitionFlipFromRight, animations: {
+//            sender.backgroundColor = .green
+//        }, completion: nil)
     }
 
 }
@@ -29,7 +45,6 @@ class ViewController: UIViewController {
 extension UILabel {
     
     func setHtmlLabel(bodyString: String?, fontFamily: String? = nil, size: CGFloat? = nil, color: String? = nil, alignment: NSTextAlignment? = nil) {
-        print(UIColor.white.hexString())
         AttributedStringFactory.create(bodyString ?? "", fontFamily: fontFamily, fontSize: size ?? self.font.pointSize, fontColor: color) {
             self.attributedText = $0
         }
@@ -39,3 +54,4 @@ extension UILabel {
         self.numberOfLines = 2
     }
 }
+

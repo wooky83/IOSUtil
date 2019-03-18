@@ -42,6 +42,11 @@ class iOSUtilTests: XCTestCase {
         ps.setValue("sung", forKeyNil: "name")
         XCTAssert(ps.value(forKeyNil: "name") as! String == "sung")
     }
+    
+    func testUIViewEx() {
+        let view = UIView(frame: CGRect(x: 10, y: 11, width: 12, height: 13))
+        XCTAssert(view.frame.origin.x == view.frameX, "Fail")
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
