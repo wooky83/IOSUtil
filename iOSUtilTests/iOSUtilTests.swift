@@ -47,6 +47,29 @@ class iOSUtilTests: XCTestCase {
         let view = UIView(frame: CGRect(x: 10, y: 11, width: 12, height: 13))
         XCTAssert(view.frame.origin.x == view.frameX, "Fail")
     }
+    
+    func testJsonStrFormat() {
+        let dic = ["name": "sung", "age": "37"]
+        guard let jsonString = Utility.jsonStringFromDictionary(dic) else {
+            preconditionFailure("fail")
+        }
+        XCTAssert(jsonString.contains("name"))
+    }
+    
+    func testJsonDicFormat() {
+        let jsonStr = """
+            {"name": "wook", "age": 27}
+            """
+        guard let dic = Utility.dictionaryFromJsonString(jsonStr) else {
+            preconditionFailure("fail")
+        }
+        XCTAssert(dic["name"] as! String == "wook" && dic["age"] as! Int == 27)
+    }
+    
+    func testStringDigits() {
+        let number = "$123,456,78%".digits
+        XCTAssert(Int(number)! == 12345678)
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
@@ -54,5 +77,7 @@ class iOSUtilTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    
 
 }
