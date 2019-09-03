@@ -19,6 +19,7 @@
 		3C8D2C9F221FA0DB00FE89FC /* iOSUtilUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D2C9E221FA0DB00FE89FC /* iOSUtilUITests.swift */; };
 		3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F676A2227AABD00A711AC /* UIColorEx.swift */; };
 		3C8F676F2227AB5A00A711AC /* NSObject+SW.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F676E2227AB5A00A711AC /* NSObject+SW.m */; };
+		3C9716E522B8863E004FE709 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9716E422B8863E004FE709 /* CALayerEx.swift */; };
 		3CE97330223F836800660199 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE9732F223F836800660199 /* UIViewEx.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		3C8F676C2227AB5900A711AC /* iOSUtil-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSUtil-Bridging-Header.h"; sourceTree = "<group>"; };
 		3C8F676D2227AB5A00A711AC /* NSObject+SW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SW.h"; sourceTree = "<group>"; };
 		3C8F676E2227AB5A00A711AC /* NSObject+SW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SW.m"; sourceTree = "<group>"; };
+		3C9716E422B8863E004FE709 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
 		3CE9732F223F836800660199 /* UIViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 				3C8F676A2227AABD00A711AC /* UIColorEx.swift */,
 				3C8F676C2227AB5900A711AC /* iOSUtil-Bridging-Header.h */,
 				3CE9732F223F836800660199 /* UIViewEx.swift */,
+				3C9716E422B8863E004FE709 /* CALayerEx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			files = (
 				3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */,
 				3C8BE647222E166900140794 /* AttributedStringFactory.swift in Sources */,
+				3C9716E522B8863E004FE709 /* CALayerEx.swift in Sources */,
 				3C8D2C81221FA0D900FE89FC /* ViewController.swift in Sources */,
 				3CE97330223F836800660199 /* UIViewEx.swift in Sources */,
 				3C64B453224A0A6A003870C5 /* Utility.swift in Sources */,

@@ -17,6 +17,7 @@ fileprivate enum CSAttributeType {
     case regular
     case underLine
     case bgColor(color: String)
+    case link(url: String?)
     
     func valueOf(_ index: Int) -> Any? {
         switch self {
@@ -54,6 +55,7 @@ fileprivate enum CSAttributeType {
         case (.italic, .italic) : return true
         case (.regular, .regular) : return true
         case (.underLine, .underLine) : return true
+        case (.link(url: _), .link(url: _)) : return true
         default: return false
         }
     }
@@ -87,6 +89,7 @@ class AttributedStringFactory: NSObject {
         super.init()
         
         self.htmlString = self.replaceBrTag(tempHtml)
+        self.htmlString = replaceXmlTag(htmlString)
         
         self.parser.parse()
     }
@@ -94,9 +97,8 @@ class AttributedStringFactory: NSObject {
     class func create(_ html: String, fontFamily: String? = nil, fontSize: CGFloat, fontColor: String? = nil, completion: @escaping (_ string: NSMutableAttributedString) -> ()) {
         let family = fontFamily.map {" face=\"\($0)\""} ?? ""
         let color = fontColor.map {" color=\"\($0)\""} ?? ""
-        let size = " size=\"\(Int(fontSize))\""
         
-        let html = "<font\(family)\(color)\(size)>\(html)</font>"
+        let html = "<font\(family)\(color)>\(html)</font>"
         let _ = AttributedStringFactory(html: html, fontSize: fontSize, completion: completion)
     }
     
@@ -131,6 +133,16 @@ class AttributedStringFactory: NSObject {
         returnText = returnText.replacingOccurrences(of: "<BR/>", with: "\n")
         returnText = returnText.replacingOccurrences(of: "<Br/>", with: "\n")
         returnText = returnText.replacingOccurrences(of: "<bR/>", with: "\n")
+        returnText = returnText.replacingOccurrences(of: "</br>", with: "\n")
+        returnText = returnText.replacingOccurrences(of: "</BR>", with: "\n")
+        
+        return returnText
+    }
+    
+    private func replaceXmlTag(_ htmlText: String) -> String {
+        var returnText = htmlText
+        
+        returnText = returnText.replacingOccurrences(of: "&", with: "&amp;")
         
         return returnText
     }
@@ -228,7 +240,9 @@ extension AttributedStringFactory: XMLParserDelegate {
             
         case "U":
             self.attributes.append(.underLine)
-            
+        case "A":
+            guard let href = attributeDict["href"] else { break }
+            self.attributes.append(.link(url: href))
         default:
             break
         }
@@ -258,7 +272,8 @@ extension AttributedStringFactory: XMLParserDelegate {
             
         case "U":
             attribute = .underLine
-            
+        case "A":
+            attribute = .link(url: nil)
         default:
             return
         }
@@ -280,7 +295,6 @@ extension AttributedStringFactory: XMLParserDelegate {
         let attributedString = NSMutableAttributedString(string: string)
         
         for attribute in self.attributes {
-            print(attribute)
             switch attribute {
             case .alignment(let alignment) :
                 guard let alignment = alignment else { break }
@@ -344,12 +358,15 @@ extension AttributedStringFactory: XMLParserDelegate {
                 attributedString.addAttribute(.backgroundColor,
                                               value: UIColor.color(colorName: color),
                                               range: NSMakeRange(0, attributedString.length))
+            case .link(let address) where address != nil:
+                attributedString.addAttribute(.link,
+                                              value: address!,
+                                              range: NSMakeRange(0, attributedString.length))
                 
             default:
                 break
             }
         }
-        print("attributedString : \(attributedString)")
         self.attributedString.append(attributedString)
     }
     
