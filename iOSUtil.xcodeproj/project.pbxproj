@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C23E66F238B8ACC00ECF42A /* dd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C23E66E238B8ACC00ECF42A /* dd.swift */; };
+		3C23E66F238B8ACC00ECF42A /* CTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C23E66E238B8ACC00ECF42A /* CTextAttachment.swift */; };
 		3C5A069A221FC40C00EA64FF /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A0699221FC40C00EA64FF /* StringEx.swift */; };
 		3C64B453224A0A6A003870C5 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C64B452224A0A6A003870C5 /* Utility.swift */; };
 		3C8BE647222E166900140794 /* AttributedStringFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8BE646222E166900140794 /* AttributedStringFactory.swift */; };
@@ -43,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3C23E66E238B8ACC00ECF42A /* dd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dd.swift; sourceTree = "<group>"; };
+		3C23E66E238B8ACC00ECF42A /* CTextAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTextAttachment.swift; sourceTree = "<group>"; };
 		3C5A0699221FC40C00EA64FF /* StringEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
 		3C64B452224A0A6A003870C5 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		3C8BE646222E166900140794 /* AttributedStringFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringFactory.swift; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 				3C8F676C2227AB5900A711AC /* iOSUtil-Bridging-Header.h */,
 				3CE9732F223F836800660199 /* UIViewEx.swift */,
 				3C9716E422B8863E004FE709 /* CALayerEx.swift */,
-				3C23E66E238B8ACC00ECF42A /* dd.swift */,
+				3C23E66E238B8ACC00ECF42A /* CTextAttachment.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -307,7 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */,
-				3C23E66F238B8ACC00ECF42A /* dd.swift in Sources */,
+				3C23E66F238B8ACC00ECF42A /* CTextAttachment.swift in Sources */,
 				3C8BE647222E166900140794 /* AttributedStringFactory.swift in Sources */,
 				3C9716E522B8863E004FE709 /* CALayerEx.swift in Sources */,
 				3C8D2C81221FA0D900FE89FC /* ViewController.swift in Sources */,

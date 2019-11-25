@@ -70,6 +70,11 @@ class iOSUtilTests: XCTestCase {
         let number = "$123,456,78%".digits
         XCTAssert(Int(number)! == 12345678)
     }
+    
+    func testStrEmptyValue() {
+        let str = " Good  ".trimmingCharacters(in: .whitespacesAndNewlines)
+        XCTAssert(str == "Good")
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
