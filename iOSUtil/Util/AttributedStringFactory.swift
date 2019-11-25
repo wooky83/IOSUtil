@@ -99,6 +99,7 @@ class AttributedStringFactory: NSObject {
         let color = fontColor.map {" color=\"\($0)\""} ?? ""
         
         let html = "<font\(family)\(color)>\(html)</font>"
+        print("whyNot : \(html)")
         let _ = AttributedStringFactory(html: html, fontSize: fontSize, completion: completion)
     }
     

@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var ThirdLabel: TTTAttributedLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +28,7 @@ class ViewController: UIViewController {
 //                """, size: 14, alignment: .center)
 
         
-        firstLabel.setHtmlLabel(bodyString: "수는 & 1건")
+        firstLabel.setHtmlLabel(bodyString: "수가 무얼까는 & 1건")
         let attributedStr = NSMutableAttributedString(attributedString: firstLabel.attributedText!)
         let attachMent = CTextAttachment()
         let hi = resizeImage(image: UIImage(named: "icCoinSmall")!, targetSize: CGSize(width: 21, height: 19))
@@ -40,6 +41,22 @@ class ViewController: UIViewController {
         firstLabel.layer.cornerRadius = 50
         
         secondLabel.setHtmlLabel(bodyString: "가나다<a href=\"http://www.naver.com\">네이버</a>사다리다")
+        //"<font size=\"20\">가나다<b><u>네이버</u></b>사다리다</font>"
+        ThirdLabel.setHtmlLabel(bodyString: "<font size=\"20\">가나다<b><u>네이버</u></b>사다리다\n노노재팬이다</font>", lineSpacing: 10)
+//        ThirdLabel.text = "Fork me on GitHub! (https://github.com/mattt/TTTAttributedLabel/)" // Repository URL will be automatically detected and linked
+        ThirdLabel.delegate = self
+        if let text = ThirdLabel.text as? NSString {
+            let hi = text.range(of: "다리")
+            ThirdLabel.addLink(to:URL.init(string: "http://www.naver.com"), with: hi)
+
+//            let hi2 = text.range(of: "Fork")
+//            ThirdLabel.addLink(to:URL.init(string: "http://www.daum.net"), with: hi2)
+        }
+        
+        
+//
+//        NSRange range = [ThirdLabel.text rangeOfString:@"me"];
+//        [label addLinkToURL:[NSURL URLWithString:@"http://github.com/mattt/"] withRange:range];
     }
     
     @objc func btnClicked(_ sender: UIButton) {
@@ -48,6 +65,13 @@ class ViewController: UIViewController {
         }, completion: nil)
     }
 
+}
+
+extension ViewController: TTTAttributedLabelDelegate {
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        print(label)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
 }
 
 extension UIFont {
@@ -62,9 +86,16 @@ extension UIFont {
 
 extension UILabel {
     
-    func setHtmlLabel(bodyString: String?, fontFamily: String? = nil, size: CGFloat? = nil, color: String? = nil, alignment: NSTextAlignment? = nil) {
+    func setHtmlLabel(bodyString: String?, fontFamily: String? = nil, size: CGFloat? = nil, color: String? = nil, alignment: NSTextAlignment? = nil, lineSpacing: CGFloat? = nil) {
         AttributedStringFactory.create(bodyString ?? "", fontFamily: fontFamily, fontSize: size ?? self.font.pointSize, fontColor: color) {
-            self.attributedText = $0
+            if let line = lineSpacing {
+                let hi = NSMutableParagraphStyle()
+                hi.lineSpacing = line
+                $0.addAttribute(.paragraphStyle, value: hi, range: NSMakeRange(0, $0.length))
+                self.attributedText = $0
+            } else {
+                self.attributedText = $0
+            }
         }
         if let alignment = alignment {
             self.textAlignment = alignment

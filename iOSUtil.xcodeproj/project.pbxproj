@@ -20,6 +20,7 @@
 		3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F676A2227AABD00A711AC /* UIColorEx.swift */; };
 		3C8F676F2227AB5A00A711AC /* NSObject+SW.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F676E2227AB5A00A711AC /* NSObject+SW.m */; };
 		3C9716E522B8863E004FE709 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9716E422B8863E004FE709 /* CALayerEx.swift */; };
+		3CBA30C6231E553900FA42B3 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30C4231E553900FA42B3 /* TTTAttributedLabel.m */; };
 		3CE97330223F836800660199 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE9732F223F836800660199 /* UIViewEx.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		3C8F676D2227AB5A00A711AC /* NSObject+SW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SW.h"; sourceTree = "<group>"; };
 		3C8F676E2227AB5A00A711AC /* NSObject+SW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SW.m"; sourceTree = "<group>"; };
 		3C9716E422B8863E004FE709 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
+		3CBA30C4231E553900FA42B3 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
+		3CBA30C5231E553900FA42B3 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		3CE9732F223F836800660199 /* UIViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +158,8 @@
 		3C8D2CAF221FA17000FE89FC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3CBA30C5231E553900FA42B3 /* TTTAttributedLabel.h */,
+				3CBA30C4231E553900FA42B3 /* TTTAttributedLabel.m */,
 				3C8F676D2227AB5A00A711AC /* NSObject+SW.h */,
 				3C8F676E2227AB5A00A711AC /* NSObject+SW.m */,
 				3C5A0699221FC40C00EA64FF /* StringEx.swift */,
@@ -307,6 +312,7 @@
 				3C5A069A221FC40C00EA64FF /* StringEx.swift in Sources */,
 				3C8F676F2227AB5A00A711AC /* NSObject+SW.m in Sources */,
 				3C8D2C7F221FA0D900FE89FC /* AppDelegate.swift in Sources */,
+				3CBA30C6231E553900FA42B3 /* TTTAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
