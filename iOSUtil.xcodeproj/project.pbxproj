@@ -21,6 +21,8 @@
 		3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F676A2227AABD00A711AC /* UIColorEx.swift */; };
 		3C8F676F2227AB5A00A711AC /* NSObject+SW.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F676E2227AB5A00A711AC /* NSObject+SW.m */; };
 		3C9716E522B8863E004FE709 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9716E422B8863E004FE709 /* CALayerEx.swift */; };
+		3CB91FF62399F1BF00F208FE /* UILabelEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB91FF52399F1BF00F208FE /* UILabelEx.swift */; };
+		3CB91FF92399F43500F208FE /* Swift-Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB91FF82399F43500F208FE /* Swift-Prefix.swift */; };
 		3CBA30C6231E553900FA42B3 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30C4231E553900FA42B3 /* TTTAttributedLabel.m */; };
 		3CE97330223F836800660199 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE9732F223F836800660199 /* UIViewEx.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,8 @@
 		3C8F676D2227AB5A00A711AC /* NSObject+SW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SW.h"; sourceTree = "<group>"; };
 		3C8F676E2227AB5A00A711AC /* NSObject+SW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SW.m"; sourceTree = "<group>"; };
 		3C9716E422B8863E004FE709 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
+		3CB91FF52399F1BF00F208FE /* UILabelEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelEx.swift; sourceTree = "<group>"; };
+		3CB91FF82399F43500F208FE /* Swift-Prefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swift-Prefix.swift"; sourceTree = "<group>"; };
 		3CBA30C4231E553900FA42B3 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		3CBA30C5231E553900FA42B3 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		3CE9732F223F836800660199 /* UIViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 			children = (
 				3C8D2CAF221FA17000FE89FC /* Extension */,
 				3C8D2CAC221FA0F000FE89FC /* Util */,
+				3CB91FF72399F3A700F208FE /* Support */,
 				3C8D2C7E221FA0D900FE89FC /* AppDelegate.swift */,
 				3C8D2C80221FA0D900FE89FC /* ViewController.swift */,
 				3C8D2C82221FA0D900FE89FC /* Main.storyboard */,
@@ -166,12 +171,21 @@
 				3C8F676E2227AB5A00A711AC /* NSObject+SW.m */,
 				3C5A0699221FC40C00EA64FF /* StringEx.swift */,
 				3C8F676A2227AABD00A711AC /* UIColorEx.swift */,
-				3C8F676C2227AB5900A711AC /* iOSUtil-Bridging-Header.h */,
 				3CE9732F223F836800660199 /* UIViewEx.swift */,
 				3C9716E422B8863E004FE709 /* CALayerEx.swift */,
 				3C23E66E238B8ACC00ECF42A /* CTextAttachment.swift */,
+				3CB91FF52399F1BF00F208FE /* UILabelEx.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		3CB91FF72399F3A700F208FE /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				3C8F676C2227AB5900A711AC /* iOSUtil-Bridging-Header.h */,
+				3CB91FF82399F43500F208FE /* Swift-Prefix.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,10 +260,12 @@
 					};
 					3C8D2C8E221FA0DB00FE89FC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1120;
 						TestTargetID = 3C8D2C7A221FA0D900FE89FC;
 					};
 					3C8D2C99221FA0DB00FE89FC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1120;
 						TestTargetID = 3C8D2C7A221FA0D900FE89FC;
 					};
 				};
@@ -307,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C8F676B2227AABD00A711AC /* UIColorEx.swift in Sources */,
+				3CB91FF62399F1BF00F208FE /* UILabelEx.swift in Sources */,
 				3C23E66F238B8ACC00ECF42A /* CTextAttachment.swift in Sources */,
 				3C8BE647222E166900140794 /* AttributedStringFactory.swift in Sources */,
 				3C9716E522B8863E004FE709 /* CALayerEx.swift in Sources */,
@@ -315,6 +332,7 @@
 				3C64B453224A0A6A003870C5 /* Utility.swift in Sources */,
 				3C5A069A221FC40C00EA64FF /* StringEx.swift in Sources */,
 				3C8F676F2227AB5A00A711AC /* NSObject+SW.m in Sources */,
+				3CB91FF92399F43500F208FE /* Swift-Prefix.swift in Sources */,
 				3C8D2C7F221FA0D900FE89FC /* AppDelegate.swift in Sources */,
 				3CBA30C6231E553900FA42B3 /* TTTAttributedLabel.m in Sources */,
 			);
@@ -494,13 +512,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iOSUtil/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-D Debug";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wooky83.iOSUtil;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "iOSUtil/Extension/iOSUtil-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOSUtil/Support/iOSUtil-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -514,13 +534,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iOSUtil/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-D Debug";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wooky83.iOSUtil;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "iOSUtil/Extension/iOSUtil-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOSUtil/Support/iOSUtil-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -540,7 +562,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wooky83.iOSUtilTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSUtil.app/iOSUtil";
 			};
@@ -560,7 +582,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wooky83.iOSUtilTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSUtil.app/iOSUtil";
 			};
@@ -579,7 +601,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wooky83.iOSUtilUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOSUtil;
 			};
@@ -598,7 +620,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wooky83.iOSUtilUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOSUtil;
 			};

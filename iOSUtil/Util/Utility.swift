@@ -21,8 +21,7 @@ enum Utility {
         do {
             let mData = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions(rawValue: UInt(0)))
             return String(data: mData, encoding: .utf8) ?? nil
-        }
-        catch {
+        } catch {
             return nil
         }
     }
@@ -40,8 +39,7 @@ enum Utility {
         guard let data = converStr.data(using: .utf8) else { return nil }
         do {
             return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-        }
-        catch {
+        } catch {
             return nil
         }
     }
