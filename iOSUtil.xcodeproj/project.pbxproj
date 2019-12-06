@@ -23,6 +23,7 @@
 		3C9716E522B8863E004FE709 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9716E422B8863E004FE709 /* CALayerEx.swift */; };
 		3CB91FF62399F1BF00F208FE /* UILabelEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB91FF52399F1BF00F208FE /* UILabelEx.swift */; };
 		3CB91FF92399F43500F208FE /* Swift-Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB91FF82399F43500F208FE /* Swift-Prefix.swift */; };
+		3CB91FFD239A14F600F208FE /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB91FFC239A14F600F208FE /* StringTests.swift */; };
 		3CBA30C6231E553900FA42B3 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30C4231E553900FA42B3 /* TTTAttributedLabel.m */; };
 		3CE97330223F836800660199 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE9732F223F836800660199 /* UIViewEx.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		3C9716E422B8863E004FE709 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
 		3CB91FF52399F1BF00F208FE /* UILabelEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelEx.swift; sourceTree = "<group>"; };
 		3CB91FF82399F43500F208FE /* Swift-Prefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swift-Prefix.swift"; sourceTree = "<group>"; };
+		3CB91FFC239A14F600F208FE /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		3CBA30C4231E553900FA42B3 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		3CBA30C5231E553900FA42B3 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		3CE9732F223F836800660199 /* UIViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				3C8D2C93221FA0DB00FE89FC /* iOSUtilTests.swift */,
+				3CB91FFC239A14F600F208FE /* StringTests.swift */,
 				3C8D2C95221FA0DB00FE89FC /* Info.plist */,
 			);
 			path = iOSUtilTests;
@@ -342,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CB91FFD239A14F600F208FE /* StringTests.swift in Sources */,
 				3C8D2C94221FA0DB00FE89FC /* iOSUtilTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

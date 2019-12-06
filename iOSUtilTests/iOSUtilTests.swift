@@ -18,14 +18,6 @@ class iOSUtilTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testAttributedString() {
-        let attributeStr = "ab<u>cde</u>fg".attributedStringFromHtml(familyName: "AppleSDGothicNeo-Bold", fontSize: 17)
-        let label = UILabel()
-        label.attributedText = attributeStr
-        print(label.font.familyName)
-        XCTAssert(label.font.familyName == "Apple SD Gothic Neo", "Fail")
-    }
     
     func testKVC() {
         
@@ -66,16 +58,7 @@ class iOSUtilTests: XCTestCase {
         XCTAssert(dic["name"] as! String == "wook" && dic["age"] as! Int == 27)
     }
     
-    func testStringDigits() {
-        let number = "$123,456,78%".digits
-        XCTAssert(Int(number)! == 12345678)
-    }
-    
-    func testStrEmptyValue() {
-        let str = " Good  ".trimmingCharacters(in: .whitespacesAndNewlines)
-        XCTAssert(str == "Good")
-    }
-
+   
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
