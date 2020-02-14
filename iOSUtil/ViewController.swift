@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @objc func btnClicked(_ sender: UIButton) {
+    @IBAction func btnClicked(_ sender: UIButton) {
         UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseIn, animations: {
             sender.backgroundColor = .green
         }, completion: nil)
