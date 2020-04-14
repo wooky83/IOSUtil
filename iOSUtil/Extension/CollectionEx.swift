@@ -2,7 +2,7 @@
 //  CollectionEx.swift
 //  iOSUtil
 //
-//  Created by 1002659 on 14/04/2020.
+//  Created by wooky83 on 14/04/2020.
 //  Copyright © 2020 wooky. All rights reserved.
 //
 
