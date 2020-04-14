@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var ThirdLabel: TTTAttributedLabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

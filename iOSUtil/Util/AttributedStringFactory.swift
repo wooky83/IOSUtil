@@ -99,14 +99,14 @@ class AttributedStringFactory: NSObject {
         let color = fontColor.map {" color=\"\($0)\""} ?? ""
         
         let html = "<font\(family)\(color)>\(html)</font>"
-        print("whyNot : \(html)")
+        print("Font Tag is : \(html)")
         let _ = AttributedStringFactory(html: html, fontSize: fontSize, completion: completion)
     }
     
     private func lastFont() -> CSAttributeType? {
         
         let attributes = self.attributes.filter { $0.isFont() }
-        guard attributes.count > 0 else {return nil}
+        guard attributes.count > 0 else { return nil }
         
         let attribute = attributes.reduce(into: (font: String?, size: CGFloat?, color: String?)(nil, nil, nil), {
             if let font = $1.valueOf(0) as? String {
@@ -119,7 +119,7 @@ class AttributedStringFactory: NSObject {
                 $0.color = color
             }
         })
-        return CSAttributeType.font(face: attribute.font, size: attribute.size, color: attribute.color)
+        return .font(face: attribute.font, size: attribute.size, color: attribute.color)
     }
     
     //br 태그가 parsing 시에 숫자로 시작되는 문자는 두개의 node에 newline을 붙이는 이슈가 있어 처음 html 텍스트에서 br 태그를 newline으로 단순 변경 후 parsing 하도록 수정
@@ -179,7 +179,7 @@ class AttributedStringFactory: NSObject {
     }
     
     private func cgFlotFromString(str: String?) -> CGFloat? {
-        guard let sizeString = str else {return nil}
+        guard let sizeString = str else { return nil }
         let sizeStringTrim = sizeString.lowercased()
             .trimmingCharacters(in: CharacterSet.decimalDigits.inverted)
             .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -216,12 +216,15 @@ extension AttributedStringFactory: XMLParserDelegate {
             var attrs: [String: String] = [:]
             
             for attr in styleString.components(separatedBy: ";") {
-                let key = attr.components(separatedBy: ":")[0]
-                let value = attr.components(separatedBy: ":")[1]
-                attrs[key.trimmingCharacters(in: .whitespaces)] = value.trimmingCharacters(in: .whitespaces)
+                if let key = attr.components(separatedBy: ":")[safe: 0], let value = attr.components(separatedBy: ":")[safe: 1] {
+                    attrs[key.trimmingCharacters(in: .whitespaces)] = value.trimmingCharacters(in: .whitespaces)
+                }
             }
-            if let size = cgFlotFromString(str: attrs["font-size"]) {
-                self.attributes.append(.font(face: nil, size: size, color: nil))
+            
+            let size = cgFlotFromString(str: attrs["font-size"])
+            let color = attrs["color"]
+            if size != nil || color != nil {
+                self.attributes.append(.font(face: nil, size: size, color: color))
             }
             
             if let bgColor = attrs["background-color"] {
