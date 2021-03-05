@@ -29,7 +29,6 @@ enum Utility {
     // MARK: - Dictionary
     
     /// Json Format의 String을 Dictionary Type으로 변환하여준다
-    /// `method`, `parameters`, `encoding` and `headers`.
     ///
     /// - parameter jsonString:        json Format String.
     ///
@@ -42,6 +41,31 @@ enum Utility {
         } catch {
             return nil
         }
+    }
+    
+    // MARK: - Dictionary
+    
+    /// 찾고자 하는 view (1, 1) PT의 Color값을 가져온다
+    ///
+    /// - parameter view:        find view.
+    ///
+    /// - returns: Top Color .
+    static func getColourFromPoint(_ view: UIView) -> UIColor {
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        
+        var pixelData: [UInt8] = [0, 0, 0, 0]
+        
+        let context = CGContext(data: &pixelData, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+        context.translateBy(x: -1, y: -1);
+        view.layer.render(in: context)
+        
+        let red = CGFloat(pixelData[0])/CGFloat(255.0)
+        let green = CGFloat(pixelData[1])/CGFloat(255.0)
+        let blue = CGFloat(pixelData[2])/CGFloat(255.0)
+        let alpha = CGFloat(pixelData[3])/CGFloat(255.0)
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
 
