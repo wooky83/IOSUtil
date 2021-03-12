@@ -65,6 +65,7 @@ fileprivate enum CSAttributeType {
 class AttributedStringFactory: NSObject {
     
     // MARK: properties
+    private var originString: String
     private var htmlString: String
     private let fontSize: CGFloat
     private var attributes: [CSAttributeType] = []
@@ -80,9 +81,10 @@ class AttributedStringFactory: NSObject {
     }()
     
     // MARK: LifeCycle
-    init(html: String, fontSize: CGFloat, completion: @escaping (_ string: NSMutableAttributedString) -> ()) {
+    init(_ origin: String, html: String, fontSize: CGFloat, completion: @escaping (_ string: NSMutableAttributedString) -> ()) {
         let tempHtml = "<html>\(html)</html>"
         
+        self.originString = origin
         self.htmlString = ""
         self.completion = completion
         self.fontSize = fontSize
@@ -94,13 +96,13 @@ class AttributedStringFactory: NSObject {
         self.parser.parse()
     }
     
-    class func create(_ html: String, fontFamily: String? = nil, fontSize: CGFloat, fontColor: String? = nil, completion: @escaping (_ string: NSMutableAttributedString) -> ()) {
+    class func create(_ str: String, fontFamily: String? = nil, fontSize: CGFloat, fontColor: String? = nil, completion: @escaping (_ string: NSMutableAttributedString) -> ()) {
         let family = fontFamily.map {" face=\"\($0)\""} ?? ""
         let color = fontColor.map {" color=\"\($0)\""} ?? ""
         
-        let html = "<font\(family)\(color)>\(html)</font>"
+        let html = "<font\(family)\(color)>\(str)</font>"
         print("Font Tag is : \(html)")
-        let _ = AttributedStringFactory(html: html, fontSize: fontSize, completion: completion)
+        let _ = AttributedStringFactory(str, html: html, fontSize: fontSize, completion: completion)
     }
     
     private func lastFont() -> CSAttributeType? {
@@ -143,7 +145,7 @@ class AttributedStringFactory: NSObject {
     private func replaceXmlTag(_ htmlText: String) -> String {
         var returnText = htmlText
         
-        returnText = returnText.replacingOccurrences(of: "&", with: "&amp;")
+//        returnText = returnText.replacingOccurrences(of: "&", with: "&amp;")
         
         return returnText
     }
@@ -376,7 +378,7 @@ extension AttributedStringFactory: XMLParserDelegate {
     
     public func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("html parser occured an error : " + parseError.localizedDescription)
-        self.completion(self.attributedString)
+        self.completion(NSMutableAttributedString(string: self.originString))
     }
 }
 
