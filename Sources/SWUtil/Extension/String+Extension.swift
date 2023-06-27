@@ -1,7 +1,9 @@
 
 import UIKit
 
-extension String {
+extension String: SWCompatible { }
+
+public extension SW where Base == String {
     //아주 많이 느릴때가 있음...
     //https://stackoverflow.com/questions/31852655/very-slow-html-rendering-in-nsattributedstring
     //https://stackoverflow.com/questions/21166752/why-does-the-initial-call-to-nsattributedstring-with-an-html-string-take-over-10
@@ -18,20 +20,25 @@ extension String {
 
     /// Returns digits.
     var digits: String {
-        return components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        return base.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
 
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        let boundingBox = base.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
 
         return ceil(boundingBox.height)
     }
 
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        let boundingBox = base.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
 
         return ceil(boundingBox.width)
     }
+
+    func trim() -> String {
+        base.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
 }
