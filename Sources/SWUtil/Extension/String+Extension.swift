@@ -41,4 +41,37 @@ public extension SW where Base == String {
         base.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
+    var prettyString: String {
+        guard let object = json,
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = String(data: data, encoding: .utf8) else {
+            return base
+        }
+        return prettyPrintedString
+    }
+
+    var json: [String: Any]? {
+        guard let data = base.data(using: .utf8),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            return nil
+        }
+
+        return json
+    }
+    
+    var phoneNumberFormatString: String? {
+        let regex = "([0-9]{3})([0-9]{4})([0-9]{4})$"
+        
+        if let regex = try? NSRegularExpression(pattern: regex) {
+            let modString = regex.stringByReplacingMatches(
+                in: base,
+                range: NSRange(base.startIndex..., in: base),
+                withTemplate: "$1-$2-$3"
+            )
+            return modString
+        } else {
+            return nil
+        }
+    }
+
 }
