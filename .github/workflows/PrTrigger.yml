@@ -1,0 +1,32 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: PR Comment Trigger
+
+on:
+  issue_comment:
+    types:
+      - created
+      - edited
+
+jobs:
+  retest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR Comment
+        id: check_comment
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const keyword = 'retest';
+            const comment = context.payload.comment.body.toLowerCase();
+            if (comment.includes(keyword)) {
+              return { retest: true };
+            }
+            return { retest: false };
+
+      - name: Rerun Action
+        if: steps.check_comment.outputs.retest == 'true'
+        uses: ./swift.yml
