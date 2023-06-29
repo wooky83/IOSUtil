@@ -19,24 +19,10 @@ jobs:
           script: |
             const issueComment = context.payload.comment.body;
             const retestKeyword = 'retest';
-
-            console.log(issueComment)
-            console.log('hi')
-
             if (issueComment.includes(retestKeyword)) {
               return true;
-              console.log("xx")
-              return {
-                echo "Running specific action11"
-                shouldRunAction: true
-              };
             } else {
               return false;
-              console.log("xx11")
-              return {
-              echo "Running specific action22"
-                shouldRunAction: false
-              };
             }
 
       - name: Get Result
@@ -44,8 +30,8 @@ jobs:
 
       - name: Run specific action
         if: steps.check_keyword.outputs.result
-        run: echo "Running specific action1"
+        uses: ${{ github.repository }}/.github/workflows/swift.yml
           
-      - name: Print Message
-        run: echo "Wow GitHub Action!"
-
+      - name: printMessage
+        run: echo "Success"
+          
