@@ -22,11 +22,13 @@ jobs:
             console.log(issueComment)
             console.log('hi')
             if (issueComment.includes(retestKeyword)) {
+              return true;
               console.log("xx")
               return {
                 shouldRunAction: true
               };
             } else {
+              return false;
               console.log("xx11")
               return {
                 shouldRunAction: false
@@ -34,10 +36,10 @@ jobs:
             }
 
       - name: Get Result
-        run: echo "${{steps.check_keyword.outputs.result.shouldRunAction}}"
+        run: echo "${{steps.check_keyword.outputs.result}}"
 
       - name: Run specific action
-        if: steps.check_keyword.outputs.result.shouldRunAction
+        if: steps.check_keyword.outputs.result
         run: echo "Running specific action1"
           
       - name: printMessage
