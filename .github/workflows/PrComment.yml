@@ -19,7 +19,10 @@ jobs:
           script: |
             const issueComment = context.payload.comment.body;
             const retestKeyword = 'retest';
-            
+
+            console.log(issueComment)
+            console.log('hi')
+
             if (issueComment.includes(retestKeyword)) {
               return {
                 echo "Running specific action11"
