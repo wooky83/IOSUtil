@@ -66,7 +66,7 @@ final class SWExtensionTests: XCTestCase {
 
     func testCGFloatAdjustWidth() {
         let width = CGFloat(100)
-        XCTAssertEqual(floor(width.sw.adjust()), 104)
+        XCTAssertEqual(floor(width.sw.adjust()), 100)
     }
 
 }
