@@ -33,6 +33,9 @@ jobs:
               };
             }
 
+      - name: Get Result
+        run: echo "${{steps.check_keyword.outputs.shouldRunAction}}"
+
       - name: Run specific action
         if: steps.check_keyword.outputs.shouldRunAction
         run: echo "Running specific action"
