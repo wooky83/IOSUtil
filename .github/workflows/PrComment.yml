@@ -22,10 +22,12 @@ jobs:
             console.log(issueComment)
             console.log('hi')
             if (issueComment.includes(retestKeyword)) {
+              console.log("xx)
               return {
                 shouldRunAction: true
               };
             } else {
+              console.log("xx11)
               return {
                 shouldRunAction: false
               };
