@@ -39,9 +39,8 @@ jobs:
 
       - name: Run specific action
         if: steps.check_keyword.outputs.shouldRunAction
-        run: |
-          # 여기에 실행하고자 하는 작업을 추가하세요
-          echo "Running specific action"
-      
+        run: echo "Running specific action"
+          
       - name: Print Message
         run: echo "Wow GitHub Action!"
+
