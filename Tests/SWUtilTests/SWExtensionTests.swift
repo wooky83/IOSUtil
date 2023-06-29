@@ -64,4 +64,9 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(removeDuplicatedArray, [1, 2, 3, 4, 5])
     }
 
+    func testCGFloatAdjustWidth() {
+        let width = CGFloat(100)
+        XCTAssertEqual(floor(width.sw.adjust()), 104)
+    }
+
 }
