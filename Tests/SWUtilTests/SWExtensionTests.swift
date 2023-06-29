@@ -43,4 +43,13 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(string.sw.phoneNumberFormatString, "010-1234-5678")
     }
 
+    func testViewframe() {
+        let view = UIView(frame: CGRect(x: 5, y: 10, width: 15, height: 20))
+        XCTAssertEqual(view.sw.frameX, 5)
+        XCTAssertEqual(view.sw.frameY, 10)
+        XCTAssertEqual(view.sw.frameWidth, 15)
+        XCTAssertEqual(view.sw.frameHeight, 20)
+        XCTAssertEqual(view.sw.frameBottom, 30)
+    }
+
 }
