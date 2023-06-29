@@ -38,7 +38,7 @@ jobs:
             }
 
       - name: Get Result
-        run: echo "${{steps.check_keyword.outputs.shouldRunAction}}"
+        run: echo "${{steps.check_keyword.outputs.result}}"
 
       - name: Run specific action
         if: steps.check_keyword.outputs.shouldRunAction
