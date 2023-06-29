@@ -24,13 +24,13 @@ jobs:
             console.log('hi')
 
             if (issueComment.includes(retestKeyword)) {
-              console.log("xx)
+              console.log("xx")
               return {
                 echo "Running specific action11"
                 shouldRunAction: true
               };
             } else {
-              console.log("xx11)
+              console.log("xx11")
               return {
               echo "Running specific action22"
                 shouldRunAction: false
