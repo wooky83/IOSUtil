@@ -18,14 +18,16 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const issueComment = context.payload.comment.body;
-            const reTestKeyword = 'reTest';
+            const retestKeyword = 'retest';
             
-            if (issueComment.includes(reTestKeyword)) {
+            if (issueComment.includes(retestKeyword)) {
               return {
+                echo "Running specific action11"
                 shouldRunAction: true
               };
             } else {
               return {
+              echo "Running specific action22"
                 shouldRunAction: false
               };
             }
@@ -35,3 +37,6 @@ jobs:
         run: |
           # 여기에 실행하고자 하는 작업을 추가하세요
           echo "Running specific action"
+      
+      - name: Print Message
+        run: echo "Wow GitHub Action!"
