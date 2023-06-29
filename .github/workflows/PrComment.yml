@@ -18,9 +18,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const issueComment = context.payload.comment.body;
-            const reTestKeyword = 'reTest';
-            
-            if (issueComment.includes(reTestKeyword)) {
+            const retestKeyword = 'retest';
+            console.log(issueComment)
+            console.log('hi')
+            if (issueComment.includes(retestKeyword)) {
               return {
                 shouldRunAction: true
               };
