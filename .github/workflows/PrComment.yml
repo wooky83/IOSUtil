@@ -1,0 +1,37 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+name: PR Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  pr_comment_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for "retest" keyword
+        id: check_keyword
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issueComment = context.payload.comment.body;
+            const reTestKeyword = 'reTest';
+            
+            if (issueComment.includes(reTestKeyword)) {
+              return {
+                shouldRunAction: true
+              };
+            } else {
+              return {
+                shouldRunAction: false
+              };
+            }
+
+      - name: Run specific action
+        if: steps.check_keyword.outputs.shouldRunAction
+        run: |
+          # 여기에 실행하고자 하는 작업을 추가하세요
+          echo "Running specific action"
