@@ -52,4 +52,16 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(view.sw.frameBottom, 30)
     }
 
+    func testArraySafeSubscript() {
+        let array = [1, 2, 3, 4, 5]
+        XCTAssertEqual(array.sw[safe: 2], 3)
+        XCTAssertNil(array.sw[safe: 6])
+    }
+
+    func testArrayRemoveDuplicated() {
+        let array = [1, 1, 1, 2, 2, 3, 4, 5]
+        let removeDuplicatedArray = array.sw.arrayDeduplicated
+        XCTAssertEqual(removeDuplicatedArray, [1, 2, 3, 4, 5])
+    }
+
 }
