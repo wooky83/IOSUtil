@@ -68,4 +68,9 @@ final class SWExtensionTests: XCTestCase {
         let width = CGFloat(100)
         XCTAssertEqual(floor(width.sw.adjust()), 104)
     }
+
+    func testDataBase64Encoding() {
+        let stringData = "?name=wooky&age=38".data(using: .utf8)!
+        XCTAssertEqual(stringData.sw.base64URLEncodedString, "P25hbWU9d29va3kmYWdlPTM4")
+    }
 }
