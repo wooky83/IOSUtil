@@ -1,19 +1,12 @@
-//
-//  File.swift
-//  
-//
-//  Created by SungwookKwon on 2023/07/06.
-//
-
 import Foundation
 
 extension Dictionary {
 
     static func + (lhs: [Key: Value], rhs: [Key: Value]) -> [Key: Value] {
-        lhs.merging(rhs) { current, _ in current }
+        lhs.merging(rhs) { _, rhs in rhs }
     }
 
     static func += (lhs: inout [Key: Value], rhs: [Key: Value]) {
-        lhs.merge(rhs) { current, _ in current }
+        lhs.merge(rhs) { _, rhs in rhs }
     }
 }

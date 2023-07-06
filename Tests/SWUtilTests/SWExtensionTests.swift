@@ -76,10 +76,10 @@ final class SWExtensionTests: XCTestCase {
 
     func testDictionaryPlus() {
         var dic1 = ["a": "1"]
-        let dic2 = ["b": "2"]
+        let dic2 = ["b": "2", "a": "3"]
         let dic3 = dic1 + dic2
         dic1 += dic2
-        XCTAssertEqual(dic1, ["a": "1", "b": "2"])
-        XCTAssertEqual(dic3, ["a": "1", "b": "2"])
+        XCTAssertEqual(dic1, ["a": "3", "b": "2"])
+        XCTAssertEqual(dic3, ["a": "3", "b": "2"])
     }
 }

@@ -7,6 +7,8 @@ let package = Package(
     name: "SWUtil",
     platforms: [
         .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v8),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
