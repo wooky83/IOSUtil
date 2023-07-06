@@ -7,6 +7,7 @@ public extension SW where Base: RangeReplaceableCollection {
         let index = base.index(base.startIndex, offsetBy: index)
         return base.indices.contains(index) ? base[index] : nil
     }
+
 }
 
 public extension SW where Base: RangeReplaceableCollection, Base.Element: Hashable {

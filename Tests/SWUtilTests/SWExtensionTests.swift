@@ -73,4 +73,13 @@ final class SWExtensionTests: XCTestCase {
         let stringData = "?name=wooky&age=38".data(using: .utf8)!
         XCTAssertEqual(stringData.sw.base64URLEncodedString, "P25hbWU9d29va3kmYWdlPTM4")
     }
+
+    func testDictionaryPlus() {
+        var dic1 = ["a": "1"]
+        let dic2 = ["b": "2"]
+        let dic3 = dic1 + dic2
+        dic1 += dic2
+        XCTAssertEqual(dic1, ["a": "1", "b": "2"])
+        XCTAssertEqual(dic3, ["a": "1", "b": "2"])
+    }
 }
