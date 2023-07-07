@@ -38,6 +38,11 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(string.sw.json!["name"] as! String, "John")
     }
 
+    func testStringUrlEncode() {
+        let string = "한글"
+        XCTAssertEqual(string.sw.urlEncoded, "%ED%95%9C%EA%B8%80")
+    }
+
     func testStringPhoneNumberFormatString() {
         let string = "01012345678"
         XCTAssertEqual(string.sw.phoneNumberFormatString, "010-1234-5678")

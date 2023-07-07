@@ -20,7 +20,11 @@ public extension SW where Base == String {
 
     /// Returns digits.
     var digits: String {
-        return base.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        base.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+    }
+
+    var urlEncoded: String {
+        base.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? base
     }
 
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
