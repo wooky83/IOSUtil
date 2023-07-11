@@ -1,7 +1,6 @@
 import UIKit
 
 public extension SW where Base: UIView {
-
     var frameX: CGFloat {
         base.frame.origin.x
     }
@@ -21,5 +20,5 @@ public extension SW where Base: UIView {
     var frameBottom: CGFloat {
         base.frame.origin.y + base.frame.size.height
     }
-    
 }
+
