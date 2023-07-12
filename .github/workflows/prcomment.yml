@@ -29,11 +29,11 @@ jobs:
         run: echo "${{steps.check_keyword.outputs.result}}"
         
       - name: If Check
-        if: ${{steps.check_keyword.outputs.result == "true"}}
+        if: ${{steps.check_keyword.outputs.result == 'true'}}
         run: echo "Hello!!"
 
       - name: Run action!
-        if: ${{steps.check_keyword.outputs.result == "true"}}
+        if: ${{steps.check_keyword.outputs.result == 'true'}}
         uses: ./.github/workflows/test.yaml
           
       - name: printMessage
