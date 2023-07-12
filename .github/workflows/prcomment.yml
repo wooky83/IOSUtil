@@ -28,7 +28,7 @@ jobs:
       - name: Get Result
         run: echo "${{steps.check_keyword.outputs.result}}"
 
-      - name: Run specific action
+      - name: Run action
         if: ${{ steps.check_keyword.outputs.result }}
         uses: ./.github/workflows/test.yaml
           
