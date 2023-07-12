@@ -30,7 +30,7 @@ jobs:
 
       - name: Run specific action
         if: steps.check_keyword.outputs.result
-        run: echo "Must Implement!!"
+        uses: ./.github/workflows/swift.yml
           
       - name: printMessage
         run: echo "Success"
