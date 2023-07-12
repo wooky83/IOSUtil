@@ -34,7 +34,7 @@ jobs:
 
       - name: Run action!
         if: ${{steps.check_keyword.outputs.result == 'true'}}
-        uses: ./.github/workflows/test.yaml
+        uses: wooky83/IOSUtil/.github/workflows/test.yaml@master
           
       - name: printMessage
         run: echo "Success"
