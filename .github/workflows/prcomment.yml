@@ -37,7 +37,7 @@ jobs:
 
       - name: Run action!
         if: ${{steps.check_keyword.outputs.result == 'true'}}
-        uses: ./.github/workflows/test.yaml@master
+        uses: ./.github/workflows/test.yaml
           
       - name: printMessage
         run: echo "Success"
