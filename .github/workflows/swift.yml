@@ -12,19 +12,4 @@ on:
 jobs:
   build_and_test:
     name: PR Build and Test
-    runs-on: macos-13
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set up Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '14.3.1'
-
-      - name: Build SPM project
-        run: xcodebuild -scheme SWUtil -destination 'platform=iOS Simulator,name=iPhone 14 Pro'
-      - name: Run Tests
-        run: xcodebuild test -scheme SWUtil -destination 'platform=iOS Simulator,name=iPhone 14 Pro'
-
-      - name: Print Message
-        run: echo "Wow GitHub Action!"
+    uses: ./.github/workflows/checker.yml
