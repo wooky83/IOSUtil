@@ -17,16 +17,26 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const keyword = 'retest';
+            const comment = context.payload.comment.body;
+            const regex = new RegExp(keyword, 'i');
+            const shouldTrigger = regex.test(comment);
+            console.log(`PR Comment: ${comment}`);
+            console.log(`Should Trigger Retest: ${shouldTrigger}`);
+            console.log(`Workflow File: .github/workflows/reusable-workflow.yml`);
+            core.setOutput('trigger-retest', shouldTrigger)
+            
             const issueComment = context.payload.comment.body;
-            const retestKeyword = 'retest';
-            if (issueComment.includes(retestKeyword)) {
+            if (issueComment.includes(keyword)) {
               return true;
             } else {
               return false;
             }
 
       - name: Get Result
-        run: echo "${{steps.check_keyword.outputs.result}}"
+        run: |
+          echo "${{steps.check_keyword.outputs.result}}"
+          echo "${{steps.check_keyword.outputs.trigger-retest}}"
         
       - name: If Check
         if: ${{steps.check_keyword.outputs.result == 'true'}}
