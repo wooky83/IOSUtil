@@ -31,10 +31,13 @@ jobs:
       - name: If Check
         if: ${{steps.check_keyword.outputs.result == 'true'}}
         run: echo "Hello!!"
+        
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Run action!
         if: ${{steps.check_keyword.outputs.result == 'true'}}
-        uses: wooky83/IOSUtil/.github/workflows/test.yaml@master
+        uses: ./.github/workflows/test.yaml@master
           
       - name: printMessage
         run: echo "Success"
