@@ -12,6 +12,6 @@ on:
 jobs:
   build:
     name: PR Build 
-    uses: ./.github/workflows/checker.yml
+    uses: ./.github/workflows/test.yaml
     
     
