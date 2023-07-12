@@ -29,7 +29,7 @@ jobs:
         run: echo "${{steps.check_keyword.outputs.result}}"
 
       - name: Run specific action
-        if: steps.check_keyword.outputs.result
+        if: ${{ steps.check_keyword.outputs.result }}
         uses: ./.github/workflows/test.yaml
           
       - name: printMessage
