@@ -29,7 +29,7 @@ jobs:
         run: echo "${{steps.check_keyword.outputs.result}}"
         
       - name: If Check
-        if: ${{ steps.check_keyword.outputs.result }}
+        if: ${{ steps.check_keyword.outputs.result == true }}
         run: echo "Hello!!"
 
       - name: Run action!
