@@ -33,7 +33,7 @@ jobs:
         run: echo "Hello!!"
         
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Run action!
         if: ${{steps.check_keyword.outputs.result == 'true'}}
