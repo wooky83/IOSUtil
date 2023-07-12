@@ -12,4 +12,4 @@ on:
 jobs:
   build_and_test:
     name: PR Build and Test
-    uses: ./.github/workflows/checker.yml
+    uses: wooky83/IOSUtil/.github/workflows/checker.yml
