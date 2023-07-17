@@ -10,7 +10,7 @@ public struct SW<Base> {
 
 public protocol SWCompatible {
     associatedtype Base
-    var sw : SW<Base> { get }
+    var sw: SW<Base> { get }
     static var sw: SW<Base>.Type { get }
 }
 

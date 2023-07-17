@@ -57,6 +57,15 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(view.sw.frameBottom, 30)
     }
 
+    func testArrayCircular() {
+        let array = [1, 2, 3, 4, 5]
+        XCTAssertEqual(array.sw[circular: 0], 1)
+        XCTAssertEqual(array.sw[circular: 5], 1)
+        XCTAssertEqual(array.sw[circular: 6], 2)
+        XCTAssertEqual(array.sw[circular: -2], 4)
+        XCTAssertEqual(array.sw[circular: -8], 3)
+    }
+
     func testArraySafeSubscript() {
         let array = [1, 2, 3, 4, 5]
         XCTAssertEqual(array.sw[safe: 2], 3)
