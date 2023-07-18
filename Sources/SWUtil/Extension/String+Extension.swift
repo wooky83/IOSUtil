@@ -78,4 +78,13 @@ public extension SW where Base == String {
         }
     }
 
+    var base64Encoded: String {
+        base.data(using: .utf8)?.base64EncodedString() ?? base
+    }
+
+    var base64Decoded: String {
+        guard let data = Data(base64Encoded: base) else { return base }
+        return String(data: data, encoding: .utf8) ?? base
+    }
+
 }

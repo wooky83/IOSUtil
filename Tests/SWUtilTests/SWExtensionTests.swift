@@ -48,6 +48,16 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(string.sw.phoneNumberFormatString, "010-1234-5678")
     }
 
+    func testStringBase64Encoding() throws {
+        let string = "12345?*"
+        XCTAssertEqual(string.sw.base64Encoded, "MTIzNDU/Kg==")
+    }
+
+    func testStringBase64Decoding() {
+        let string = "MTIzNDU/Kg=="
+        XCTAssertEqual(string.sw.base64Decoded, "12345?*")
+    }
+
     func testViewframe() {
         let view = UIView(frame: CGRect(x: 5, y: 10, width: 15, height: 20))
         XCTAssertEqual(view.sw.frameX, 5)
