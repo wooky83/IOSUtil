@@ -60,4 +60,52 @@ final class SWCombineTests: XCTestCase {
         }
     }
 
+    func testCombineFlatMapLatest() async throws {
+        var cancellables = Set<AnyCancellable>()
+        let subject = PassthroughSubject<Int, Never>()
+        var result = [Int]()
+        subject
+            .flatMapLatest { value in
+                Just(value)
+                    .delay(for: .seconds(1), scheduler: DispatchQueue.global())
+                    .eraseToAnyPublisher()
+            }
+            .sink {
+                result.append($0)
+            }
+            .store(in: &cancellables)
+        subject.send(1)
+        subject.send(2)
+        subject.send(3)
+        subject.send(4)
+        subject.send(5)
+        subject.send(completion: .finished)
+        try await Task.sleep(nanoseconds: 2_000_000_000)
+        await expect(result).toEventually(equal([5]))
+    }
+
+    func testCombineAsyncMap() async throws {
+        func asyncFunction(value: Int) async -> Int {
+            await withCheckedContinuation { promise in
+                promise.resume(returning: value)
+            }
+        }
+        var cancellables = Set<AnyCancellable>()
+        let subject = PassthroughSubject<Int, Never>()
+        var result = [Int]()
+        subject
+            .asyncMap { value in
+                await asyncFunction(value: value)
+            }
+            .sink(receiveValue: { value in
+                result.append(value)
+            })
+            .store(in: &cancellables)
+        subject.send(3)
+        subject.send(3)
+        subject.send(3)
+        subject.send(completion: .finished)
+        await expect(result).toEventually(equal([3, 3, 3]))
+    }
+
 }
