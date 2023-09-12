@@ -108,4 +108,42 @@ final class SWCombineTests: XCTestCase {
         await expect(result).toEventually(equal([3, 3, 3]))
     }
 
+    func testNwise() throws {
+        var cancellables = Set<AnyCancellable>()
+        let subject = PassthroughSubject<Int, Never>()
+        var result = [[Int]]()
+        subject
+            .nwise(3)
+            .sink {
+                result.append($0)
+            }
+            .store(in: &cancellables)
+        subject.send(1)
+        subject.send(2)
+        subject.send(3)
+        subject.send(4)
+        subject.send(5)
+        subject.send(completion: .finished)
+        expect(result).toEventually(equal([[1, 2, 3], [2, 3, 4], [3, 4, 5]]))
+    }
+
+    func testPairwise() throws {
+        var cancellables = Set<AnyCancellable>()
+        let subject = PassthroughSubject<Int, Never>()
+        var result = [[Int]]()
+        subject
+            .pairwise()
+            .sink {
+                result.append([$0.0, $0.1])
+            }
+            .store(in: &cancellables)
+        subject.send(1)
+        subject.send(2)
+        subject.send(3)
+        subject.send(4)
+        subject.send(5)
+        subject.send(completion: .finished)
+        expect(result).toEventually(equal([[1, 2], [2, 3], [3, 4], [4, 5]]))
+    }
+
 }

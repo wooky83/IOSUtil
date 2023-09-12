@@ -5,3 +5,4 @@ public extension Publisher {
         compactMap { $0 }
     }
 }
+
