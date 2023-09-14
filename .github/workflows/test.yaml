@@ -18,10 +18,8 @@ jobs:
         with:
           xcode-version: '14.3.1'
 
-      - name: Build SPM project
-        run: xcodebuild -scheme SWUtil -destination 'platform=iOS Simulator,name=iPhone 14 Pro'
-      - name: Run Tests
-        run: xcodebuild test -scheme SWUtil -destination 'platform=iOS Simulator,name=iPhone 14 Pro'
+      - name: Build & Tests SPM project
+        run: xcodebuild -scheme SWUtil -destination 'platform=iOS Simulator,name=iPhone 14 Pro' build test
 
       - name: Print Message
         run: echo "workflow GitHub Action!"
