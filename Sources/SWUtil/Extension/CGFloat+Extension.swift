@@ -1,3 +1,4 @@
+#if os(iOS) || os(tvOS)
 import UIKit
 
 extension CGFloat: SWCompatible {}
@@ -6,4 +7,4 @@ public extension SW where Base == CGFloat {
         base * (min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) / baseWidth)
     }
 }
-
+#endif

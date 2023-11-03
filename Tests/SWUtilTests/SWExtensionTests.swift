@@ -58,6 +58,7 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(string.sw.base64Decoded, "12345?*")
     }
 
+    #if canImport(UIKit)
     func testViewframe() {
         let view = UIView(frame: CGRect(x: 5, y: 10, width: 15, height: 20))
         XCTAssertEqual(view.sw.frameX, 5)
@@ -66,6 +67,7 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(view.sw.frameHeight, 20)
         XCTAssertEqual(view.sw.frameBottom, 30)
     }
+    #endif
 
     func testArrayCircular() {
         let array = [1, 2, 3, 4, 5]
@@ -88,10 +90,12 @@ final class SWExtensionTests: XCTestCase {
         XCTAssertEqual(removeDuplicatedArray, [1, 2, 3, 4, 5])
     }
 
+    #if canImport(UIKit)
     func testCGFloatAdjustWidth() {
         let width = CGFloat(100)
         XCTAssertEqual(floor(width.sw.adjust()), 104)
     }
+    #endif
 
     func testDataBase64Encoding() {
         let stringData = "?name=wooky&age=38".data(using: .utf8)!

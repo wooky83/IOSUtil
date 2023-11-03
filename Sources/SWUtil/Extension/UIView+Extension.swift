@@ -1,3 +1,4 @@
+#if os(iOS) || os(tvOS)
 import UIKit
 
 public extension SW where Base: UIView {
@@ -21,4 +22,4 @@ public extension SW where Base: UIView {
         base.frame.origin.y + base.frame.size.height
     }
 }
-
+#endif
