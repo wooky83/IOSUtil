@@ -19,7 +19,7 @@ jobs:
           xcode-version: '15.0.1'
 
       - name: Build & Tests SPM project
-        run: swift build & swift test
+        run: swift build && swift test
 
       - name: Print Message
         run: echo "workflow GitHub Action!"
