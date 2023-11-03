@@ -1,4 +1,4 @@
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 import UIKit
 #endif
 import Foundation
@@ -61,7 +61,7 @@ public extension SW where Base == String {
         return String(data: data, encoding: .utf8) ?? base
     }
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
     //아주 많이 느릴때가 있음...
     //https://stackoverflow.com/questions/31852655/very-slow-html-rendering-in-nsattributedstring
     //https://stackoverflow.com/questions/21166752/why-does-the-initial-call-to-nsattributedstring-with-an-html-string-take-over-10
