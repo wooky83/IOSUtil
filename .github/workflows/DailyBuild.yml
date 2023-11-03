@@ -18,6 +18,6 @@ jobs:
          with:
            xcode-version: '15.0.1'
        - name: Build & Test SPM project
-         run: swift build & swift test
+         run: swift build && swift test
        - name: Print Message
          run: echo "Daily Build GitHub Action!"
