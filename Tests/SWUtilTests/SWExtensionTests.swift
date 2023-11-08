@@ -3,6 +3,14 @@ import XCTest
 
 final class SWExtensionTests: XCTestCase {
 
+    public override func setUp() {
+        super.setUp()
+    }
+
+    public override func tearDown() {
+        super.tearDown()
+    }
+
     func testStringDigit() throws {
         let string = "가나다83라마바사"
         XCTAssertEqual("83", string.sw.digits)
