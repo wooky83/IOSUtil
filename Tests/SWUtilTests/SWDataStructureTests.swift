@@ -12,6 +12,14 @@ final class SWDataStructureTests: XCTestCase {
         XCTAssertEqual(stack.peek(), 0)
     }
 
+    func testStackIsEmpty() throws {
+        var stack = Stack<Int>()
+        XCTAssertTrue(stack.isEmpty)
+        stack.push(5)
+        stack.push(7)
+        XCTAssertEqual("5 7", stack.description)
+    }
+
     func testQueueArray() throws {
         var queue: QueueArray<Int> = [1, 2, 3, 4, 5]
         XCTAssertEqual(queue.count, 5)
