@@ -1,0 +1,34 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: PR Build & Test
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: macos-13
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '15.0.1'
+
+      - name: Build & Tests SPM project
+        run: xcodebuild -scheme SWUtil -destination 'platform=iOS Simulator,name=iPhone 14 Pro' -resultBundlePath TestResults build test
+      
+      - uses: kishikawakatsumi/xcresulttool@v1
+        with:
+          path: TestResults.xcresult
+        if: success() || failure()
+        # ^ This is important because the action will be run
+        # even if the test fails in the previous step.
+
+      - name: Print Message
+        run: echo "PR Build & Test!"
