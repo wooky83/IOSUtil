@@ -20,7 +20,9 @@ jobs:
         run: git fetch origin master
 
       - name: Merge master into PR branch
-        run: git merge origin/master
+        run: git remote -v \
+          git branch \
+          git merge --allow-unrelated-histories origin/master
       
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
