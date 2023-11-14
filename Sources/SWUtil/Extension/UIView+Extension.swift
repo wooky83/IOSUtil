@@ -1,25 +1,25 @@
 #if canImport(UIKit)
 import UIKit
 
-public extension SW where Base: UIView {
+public extension UIView {
     var frameX: CGFloat {
-        base.frame.origin.x
+        frame.origin.x
     }
 
     var frameY: CGFloat {
-        base.frame.origin.y
+        frame.origin.y
     }
 
     var frameHeight: CGFloat {
-        base.frame.size.height
+        frame.size.height
     }
 
     var frameWidth: CGFloat {
-        base.frame.size.width
+        frame.size.width
     }
 
     var frameBottom: CGFloat {
-        base.frame.origin.y + base.frame.size.height
+        frame.origin.y + frame.size.height
     }
 }
 #endif
