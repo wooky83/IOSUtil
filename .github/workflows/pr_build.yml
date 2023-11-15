@@ -21,7 +21,7 @@ jobs:
           xcode-version: '15.0.1'
 
       - name: Build & Tests SPM project
-        run: xcodebuild -scheme SWUtil -destination 'platform=iOS Simulator,name=iPhone 14 Pro' -resultBundlePath TestResults build test
+        run: xcodebuild -scheme SWUtil -destination 'platform=iOS Simulator,name=iPhone 14 Pro' -resultBundlePath TestResults build test | xcpretty
       
       - uses: kishikawakatsumi/xcresulttool@v1
         with:
