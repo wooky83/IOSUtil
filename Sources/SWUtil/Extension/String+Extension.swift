@@ -50,6 +50,17 @@ public extension String {
         }
     }
 
+    var isValidEmail: Bool {
+        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+
+        if let regex = try? NSRegularExpression(pattern: regex) {
+            let matches = regex.matches(in: self, range: NSRange(startIndex..., in: self))
+            return !matches.isEmpty
+        } else {
+            return false
+        }
+    }
+
     var base64Encoded: String {
         data(using: .utf8)?.base64EncodedString() ?? self
     }
