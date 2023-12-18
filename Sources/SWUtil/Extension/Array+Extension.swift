@@ -15,7 +15,7 @@ extension Collection {
 }
 
 extension Collection where Element: Hashable {
-    var arrayDeduplicated: [Self.Element] {
+    var arrayDuduplicated: [Self.Element] {
         var dict: [Element: Bool] = [:]
         return filter { dict.updateValue(true, forKey: $0) == nil }
     }

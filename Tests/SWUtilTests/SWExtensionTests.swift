@@ -43,7 +43,7 @@ final class SWExtensionTests: XCTestCase {
 
     func testArrayRemoveDuplicated() {
         let array = [1, 1, 1, 2, 2, 3, 4, 5]
-        let removeDuplicatedArray = array.arrayDeduplicated
+        let removeDuplicatedArray = array.arrayDuduplicated
         XCTAssertEqual(removeDuplicatedArray, [1, 2, 3, 4, 5])
     }
 
